@@ -2,7 +2,7 @@
 let g:mapleader = "\<Space>"
 
 "set python3 provider
-let g:python3_host_prog="/home/kobby/.local/anyenv/envs/pyenv/versions/neovim/bin/python"
+let g:python3_host_prog="~/.local/anyenv/envs/pyenv/versions/neovim/bin/python"
 
 colorscheme onedark
 syntax enable                           " Enables syntax highlighing
