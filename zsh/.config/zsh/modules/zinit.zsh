@@ -88,7 +88,7 @@ zinit wait lucid light-mode if'islinux' for \
 
 zinit wait lucid light-mode if'ismac' for \
   id-as'minikube' \
-  atclone"curl -LO minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64" \
+  atclone"curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64" \
   sbin atpull"%atclone" \
   zdharma/null
 
