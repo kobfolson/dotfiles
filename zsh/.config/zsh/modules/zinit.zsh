@@ -71,6 +71,40 @@ zinit wait lucid for \
   sbin'bin/anyenv' \
     atload'export ANYENV_ROOT=$HOME/.local/anyenv; eval "$(anyenv init -)"' anyenv/anyenv
 
+zinit as'null' wait lucid light-mode for \
+  id-as'sdkman' run-atpull \
+  atclone"wget https://get.sdkman.io/\?rcupdate=false -O scr.sh;
+    SDKMAN_DIR=$HOME/.local/sdkman bash scr.sh" \
+  atpull"SDKMAN_DIR=$HOME/.local/sdkman sdk selfupdate" \
+  atinit"export SDKMAN_DIR=$HOME/.local/sdkman;
+    source $HOME/.local/sdkman/bin/sdkman-init.sh" \
+  zdharma/null
+
+zinit wait lucid light-mode if'islinux' for \
+  id-as'minikube' \
+  atclone"curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64" \
+  sbin atpull"%atclone" \
+  zdharma/null
+
+zinit wait lucid light-mode if'ismac' for \
+  id-as'minikube' \
+  atclone"curl -LO minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64" \
+  sbin atpull"%atclone" \
+  zdharma/null
+
+zinit wait lucid light-mode if'islinux' for \
+  id-as'kubectl' \
+  atclone"curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o kubectl" \
+  sbin atpull"%atclone" \
+  zdharma/null
+
+zinit wait lucid light-mode if'ismac' for \
+  id-as'kubectl' \
+  atclone" curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl -o kubectl" \
+  sbin atpull"%atclone" \
+  zdharma/null
+
+
 # zinit wait lucid sbin'bin/anyenv' \
 #   atload'export ANYENV_ROOT=$HOME/.anyenv; eval "$(anyenv init -)"'
 # zinit light anyenv/anyenv
@@ -117,53 +151,9 @@ zinit snippet 'https://github.com/docker/compose/blob/master/contrib/completion/
 zinit wait'1' as'completion' id-as'gh-completion' lucid for \
   atclone'gh completion -s zsh > _gh' atpull'%atclone' zdharma/null
 
-# Themes
-if [[ "$ZSH_THEME" == "p9k" ]]; then
-
-  POWERLEVEL9K_MODE='nerdfont-complete'
-  POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-  POWERLEVEL9K_SHORTEN_STRATEGY='truncate_middle'
-  POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
-  POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
-  POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs root_indicator ssh dir vcs)
-  POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status dir_writable ram rbenv pyenv)
-
-  DEFAULT_USER=${USER}
-  POWERLEVEL9K_DIR_HOME_BACKGROUND='033'
-  POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='033'
-  POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='033'
-  POWERLEVEL9K_DIR_HOME_FOREGROUND='236'
-  POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='236'
-  POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='236'
-  POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND='black'
-  POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND='009'
-
-  POWERLEVEL9K_HOME_ICON=''
-  POWERLEVEL9K_HOME_SUB_ICON=''
-  POWERLEVEL9K_FOLDER_ICON=''
-  POWERLEVEL9K_ROOT_ICON='\uF0E7'
-  POWERLEVEL9K_STATUS_VERBOSE=false
-  POWERLEVEL9K_STATUS_OK_IN_NON_VERBOSE=true
-
-  POWERLEVEL9K_VCS_GIT_GITHUB_ICON='\uF113'
-  POWERLEVEL9K_VCS_CLEAN_BACKGROUND='154'
-  POWERLEVEL9K_VCS_CLEAN_FOREGROUND='236'
-  POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='220'
-  POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='236'
-  POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='227'
-  POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='236'
-  POWERLEVEL9K_RAM_BACKGROUND='220'
-  POWERLEVEL9K_PYENV_FOREGROUND='black'
-  POWERLEVEL9K_PYENV_BACKGROUND='033'
-  POWERLEVEL9K_SHOW_CHANGESET=true
-  POWERLEVEL9K_CHANGESET_HASH_LENGTH=6
-
-  zinit light bhilburn/powerlevel9k
-
-elif [[ "$ZSH_THEME" == "p10k" ]]; then
-
+# Theme
+if [[ "$ZSH_THEME" == "p10k" ]]; then
   zinit ice atload'[[ -f $ZDOTDIR/.p10k.zsh ]] && source $ZDOTDIR/.p10k.zsh || true; _p9k_precmd' \
     lucid nocd
   zinit load romkatv/powerlevel10k
-
 fi
