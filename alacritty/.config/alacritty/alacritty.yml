@@ -27,24 +27,22 @@ colors:
     cyan: "#56b6c2"
     white: "#ECEFF4"
 
-background_opacity: 1.0
-
 font:
   normal:
-    family: "DelugiaCodeNF"
+    family: "Delugia"
     style: Regular
   bold:
-    family: "DelugiaCodeNF"
+    family: "Delugia"
     style: Bold
   italic:
-    family: "DelugiaCodeNF"
+    family: "Delugia"
     style: Italic
   bold_italic:
-    family: "DelugiaCodeNF"
+    family: "Delugia"
     style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 16.0
 
   offset:
     x: 0
@@ -54,9 +52,20 @@ font:
     y: 0
 
 window:
+  dimensions:
+    columns: 121
+    lines: 35
+
+  position:
+    x: 160
+    y: 90
+
   padding:
-    x: 2
-    y: 2
+    x: 10
+    y: 10
+
+  opacity: 1.0
+  decorations: none
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -75,9 +84,6 @@ selection:
   save_to_clipboard: true
 
 live_config_reload: true
-
-decorations: none
-
 # key_bindings:
 #   - { key: V, mods: Control|Shift, action: Paste }
 #   - { key: C, mods: Control|Shift, action: Copy }
