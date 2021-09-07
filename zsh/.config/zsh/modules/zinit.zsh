@@ -21,6 +21,7 @@ compinit -u -d "$XDG_CACHE_HOME/zsh/compdump"
 
 # Zinit extensions
 zinit light-mode for zinit-zsh/z-a-bin-gem-node
+zinit light-mode for zinit-zsh/z-a-readurl
 
 # Commands
 zinit light rupa/z
@@ -104,6 +105,15 @@ zinit wait lucid light-mode if'ismac' for \
   sbin atpull"%atclone" \
   zdharma/null
 
+zinit if'islinux' id-as'terraform' as'readurl|command' extract \
+    dlink0'/terraform/%VERSION%/~%.*-(alpha|beta|rc).*%' \
+    dlink'/terraform/%VERSION%/terraform_%VERSION%_linux_amd64.zip' \
+    for https://releases.hashicorp.com/terraform/
+
+zinit if'ismac' id-as'terraform' as'readurl|command' extract \
+    dlink0'/terraform/%VERSION%/~%.*-(alpha|beta|rc).*%' \
+    dlink'/terraform/%VERSION%/terraform_%VERSION%_darwin_amd64.zip' \
+    for https://releases.hashicorp.com/terraform/
 
 # zinit wait lucid sbin'bin/anyenv' \
 #   atload'export ANYENV_ROOT=$HOME/.anyenv; eval "$(anyenv init -)"'
