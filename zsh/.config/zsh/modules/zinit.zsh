@@ -3,12 +3,12 @@
 #
 
 typeset -A ZINIT
-ZINIT_HOME=$HOME/.local/zinit
+ZINIT_HOME=$XDG_DATA_HOME/zinit
 ZINIT[HOME_DIR]=$ZINIT_HOME
 ZINIT[ZCOMPDUMP_PATH]=$XDG_CACHE_HOME/zsh/compdump
 
 if [[ ! -f $ZINIT_HOME/bin/zinit.zsh ]]; then
-  git clone https://github.com/zdharma/zinit.git $ZINIT_HOME/bin
+  git clone https://github.com/zdharma-continuum/zinit.git $ZINIT_HOME/bin
   zcompile $ZINIT_HOME/bin/zinit.zsh
 fi
 
@@ -20,8 +20,8 @@ autoload -Uz compinit
 compinit -u -d "$XDG_CACHE_HOME/zsh/compdump"
 
 # Zinit extensions
-zinit light-mode for zinit-zsh/z-a-bin-gem-node
-zinit light-mode for zinit-zsh/z-a-readurl
+zinit light-mode for zdharma-continuum/zinit-annex-bin-gem-node
+zinit light-mode for zdharma-continuum/zinit-annex-readurl
 
 # Commands
 zinit light rupa/z
@@ -48,7 +48,7 @@ zinit from'gh-r' lucid for \
   atclone'cp -vf **/*.1 $ZPFX/share/man/man1' atpull'%atclone' @cli/cli
 
 zinit as'null' wait lucid light-mode for \
-  sbin'bin/git-dsf;bin/diff-so-fancy' zdharma/zsh-diff-so-fancy \
+  sbin'bin/git-dsf;bin/diff-so-fancy' zdharma-continuum/zsh-diff-so-fancy \
   sbin'emojify;fuzzy-emoji' src'fuzzy-emoji-zle.zsh' wfxr/emoji-cli
 
 zinit as'null' from'gh-r' lucid for \
@@ -79,38 +79,38 @@ zinit as'null' wait lucid light-mode for \
   atpull"SDKMAN_DIR=$HOME/.local/sdkman sdk selfupdate" \
   atinit"export SDKMAN_DIR=$HOME/.local/sdkman;
     source $HOME/.local/sdkman/bin/sdkman-init.sh" \
-  zdharma/null
+  zdharma-continuum/null
 
-zinit wait lucid light-mode if'islinux' for \
+zinit wait'2' lucid light-mode if'islinux' for \
   id-as'minikube' \
   atclone"curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64" \
   sbin atpull"%atclone" \
-  zdharma/null
+  zdharma-continuum/null
 
-zinit wait lucid light-mode if'ismac' for \
+zinit wait'2' lucid light-mode if'ismac' for \
   id-as'minikube' \
   atclone"curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64" \
   sbin atpull"%atclone" \
-  zdharma/null
+  zdharma-continuum/null
 
-zinit wait lucid light-mode if'islinux' for \
+zinit wait'2' lucid light-mode if'islinux' for \
   id-as'kubectl' \
   atclone"curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o kubectl" \
   sbin atpull"%atclone" \
-  zdharma/null
+  zdharma-continuum/null
 
-zinit wait lucid light-mode if'ismac' for \
+zinit wait'2' lucid light-mode if'ismac' for \
   id-as'kubectl' \
   atclone" curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl -o kubectl" \
   sbin atpull"%atclone" \
-  zdharma/null
+  zdharma-continuum/null
 
-zinit if'islinux' id-as'terraform' as'readurl|command' extract \
+zinit wait'2' if'islinux' id-as'terraform' as'readurl|command' extract \
     dlink0'/terraform/%VERSION%/~%.*-(alpha|beta|rc).*%' \
     dlink'/terraform/%VERSION%/terraform_%VERSION%_linux_amd64.zip' \
     for https://releases.hashicorp.com/terraform/
 
-zinit if'ismac' id-as'terraform' as'readurl|command' extract \
+zinit wait'2' if'ismac' id-as'terraform' as'readurl|command' extract \
     dlink0'/terraform/%VERSION%/~%.*-(alpha|beta|rc).*%' \
     dlink'/terraform/%VERSION%/terraform_%VERSION%_darwin_amd64.zip' \
     for https://releases.hashicorp.com/terraform/
@@ -159,7 +159,7 @@ zinit ice wait'1' lucid as'completion' \
 zinit snippet 'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose'
 
 zinit wait'1' as'completion' id-as'gh-completion' lucid for \
-  atclone'gh completion -s zsh > _gh' atpull'%atclone' zdharma/null
+  atclone'gh completion -s zsh > _gh' atpull'%atclone' zdharma-continuum/null
 
 # Theme
 if [[ "$ZSH_THEME" == "p10k" ]]; then

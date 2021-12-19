@@ -34,15 +34,15 @@ font:
   bold:
     family: "Delugia"
     style: Bold
-  italic:
-    family: "Delugia"
-    style: Italic
-  bold_italic:
-    family: "Delugia"
-    style: Bold Italic
+  # italic:
+  #   family: "Delugia"
+  #   style: Italic
+  # bold_italic:
+  #   family: "Delugia"
+  #   style: Bold Italic
 
   # Point size
-  size: 16.0
+  size: 13.5
 
   offset:
     x: 0
