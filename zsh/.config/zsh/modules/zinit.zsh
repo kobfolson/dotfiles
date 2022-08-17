@@ -57,6 +57,7 @@ zinit as'null' from'gh-r' lucid for \
   mv'jq* -> jq' sbin stedolan/jq \
   mv'shfmt* -> shfmt' sbin @mvdan/sh \
   mv'countdown* -> countdown' sbin antonmedv/countdown \
+  mv"direnv* -> direnv" atload'eval "$(direnv hook zsh)"' sbin direnv/direnv \
   sbin junegunn/fzf-bin
 
 zinit from'gh-r' lucid for \
@@ -80,40 +81,6 @@ zinit as'null' wait lucid light-mode for \
   atinit"export SDKMAN_DIR=$HOME/.local/sdkman;
     source $HOME/.local/sdkman/bin/sdkman-init.sh" \
   zdharma-continuum/null
-
-zinit wait'2' lucid light-mode if'islinux' for \
-  id-as'minikube' \
-  atclone"curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64" \
-  sbin atpull"%atclone" \
-  zdharma-continuum/null
-
-zinit wait'2' lucid light-mode if'ismac' for \
-  id-as'minikube' \
-  atclone"curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64" \
-  sbin atpull"%atclone" \
-  zdharma-continuum/null
-
-zinit wait'2' lucid light-mode if'islinux' for \
-  id-as'kubectl' \
-  atclone"curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl -o kubectl" \
-  sbin atpull"%atclone" \
-  zdharma-continuum/null
-
-zinit wait'2' lucid light-mode if'ismac' for \
-  id-as'kubectl' \
-  atclone" curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl -o kubectl" \
-  sbin atpull"%atclone" \
-  zdharma-continuum/null
-
-zinit wait'2' if'islinux' id-as'terraform' as'readurl|command' extract lucid \
-    dlink0'/terraform/%VERSION%/~%.*-(alpha|beta|rc).*%' \
-    dlink'/terraform/%VERSION%/terraform_%VERSION%_linux_amd64.zip' \
-    for https://releases.hashicorp.com/terraform/
-
-zinit wait'2' if'ismac' id-as'terraform' as'readurl|command' extract lucid \
-    dlink0'/terraform/%VERSION%/~%.*-(alpha|beta|rc).*%' \
-    dlink'/terraform/%VERSION%/terraform_%VERSION%_darwin_amd64.zip' \
-    for https://releases.hashicorp.com/terraform/
 
 # zinit wait lucid sbin'bin/anyenv' \
 #   atload'export ANYENV_ROOT=$HOME/.anyenv; eval "$(anyenv init -)"'

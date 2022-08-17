@@ -1,32 +1,3 @@
-colors:
-  # Default colors
-  primary:
-    background: "#1e2127"
-    # background: "#2E3440"
-    foreground: "#D8DEE9"
-
-  # Normal colors
-  normal:
-    black: "#3B4252"
-    red: "#BF616A"
-    green: "#A3BE8C"
-    yellow: "#EBCB8B"
-    blue: "#81A1C1"
-    magenta: "#B48EAD"
-    cyan: "#88C0D0"
-    white: "#abb2bf"
-
-  # Bright colors
-  bright:
-    black: "#5c6370"
-    red: "#e06c75"
-    green: "#98c379"
-    yellow: "#d19a66"
-    blue: "#61afef"
-    magenta: "#c678dd"
-    cyan: "#56b6c2"
-    white: "#ECEFF4"
-
 font:
   normal:
     family: "Delugia"
@@ -34,12 +5,6 @@ font:
   bold:
     family: "Delugia"
     style: Bold
-  # italic:
-  #   family: "Delugia"
-  #   style: Italic
-  # bold_italic:
-  #   family: "Delugia"
-  #   style: Bold Italic
 
   # Point size
   size: 17
@@ -93,7 +58,40 @@ selection:
   save_to_clipboard: true
 
 live_config_reload: true
-# key_bindings:
+colors:
+  # Default colors
+  primary:
+    background: "#282c34"
+    foreground: "#abb2bf"
+
+  # Normal colors
+  normal:
+    # NOTE: Use '#131613' for the `black` color if you'd like to see
+    # black text on the background.
+    black: "#282c34"
+    red: "#e06c75"
+    green: "#98c379"
+    yellow: "#d19a66"
+    blue: "#61afef"
+    magenta: "#c678dd"
+    cyan: "#56b6c2"
+    white: "#abb2bf"
+
+  # Bright colors
+  bright:
+    black: "#5c6370"
+    red: "#e06c75"
+    green: "#98c379"
+    yellow: "#d19a66"
+    blue: "#61afef"
+    magenta: "#c678dd"
+    cyan: "#56b6c2"
+    white: "#ffffff"
+theme: One-Dark
+
+key_bindings:
+  - { key: Right, mods: Alt, chars: "\x1BF" }
+  - { key: Left, mods: Alt, chars: "\x1BB" }
 #   - { key: V, mods: Control|Shift, action: Paste }
 #   - { key: C, mods: Control|Shift, action: Copy }
 #   - { key: Key0, mods: Control, action: ResetFontSize }
