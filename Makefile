@@ -1,10 +1,20 @@
+SHELL=/bin/bash
+
+export DIRS := alacritty bat git mpv tmux zsh
+export PKGS := black mypy flake8 isort
+
 install_brew:
-	xcode-select --install \
-  		&& /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
-			&& eval "$(/opt/homebrew/bin/brew shellenv)"
+	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 
 run_brewfile:
 	brew bundle
+
+stow_dirs:
+	$(foreach dir,$(DIRS),$(shell stow -Rv --no-folding $(dir)))
+
+py_linters:
+	$(foreach pkg,$(PKGS),$(shell pipx install $(pkg)))
 
 system:
 	# Dark interface is best interface
@@ -17,4 +27,4 @@ system:
 	mkdir -p $HOME/Pictures/Screenshots
 	defaults write com.apple.screencapture location $HOME/Pictures/Screenshots
 
-all: install_brew run_brewfile system
+all: install_brew run_brewfile stow_dirs py_linters system
