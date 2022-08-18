@@ -20,6 +20,8 @@ brew "ansible"
 cask_args appdir: "/Applications", require_sha: true, greedy: true
 
 # 'brew install --cask'
+cask "iina"
+cask "logseq"
 cask "google-chrome"
 cask "firefox"
 cask "jetbrains-toolbox"
@@ -32,14 +34,13 @@ cask "raycast"
 cask "docker"
 cask "appcleaner"
 cask "cheatsheet"
-cask "firefox"
-cask "google-drive"
 cask "alacritty"
 cask "caffeine"
 cask "postman"
 cask "spotify"
 cask "webpquicklook"
 cask "visual-studio-code"
+cask "hyperswitch"
 
 # 'mas install'
 mas "Slack", id: 803453959
