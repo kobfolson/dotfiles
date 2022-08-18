@@ -1,9 +1,13 @@
+SHELL=/bin/zsh
+
 export DIRS := alacritty bat git mpv tmux zsh
 export PKGS := black mypy flake8 isort
 
+.ONESHELL:
+.PHONY: install_brew
 install_brew:
-	/bin/bash -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	eval "$(/opt/homebrew/bin/brew shellenv)"
+	sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash \
+		&& eval "$$(/opt/homebrew/bin/brew shellenv)" | bash
 
 run_brewfile:
 	brew bundle

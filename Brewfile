@@ -24,11 +24,8 @@ brew "lazydocker"
 brew "ansible"
 
 # fonts
-brew "font-delugia-complete"
-brew "font-jetbrains-mono"
-
-# set arguments for all 'brew install --cask' commands
-cask_args appdir: "/Applications", require_sha: true, greedy: true
+cask "font-delugia-complete"
+cask "font-jetbrains-mono"
 
 # 'brew install --cask'
 cask "iina"
@@ -54,8 +51,9 @@ cask "visual-studio-code"
 cask "hyperswitch"
 
 # 'mas install'
-mas "Slack", id: 803453959
-mas "Color Picker", id: 641027709
-mas "Grammarly", id: 1462114288
-mas "Live Wallpaper", id: 1456235760
-mas "Flip Clock", id: 1181028777
+# mas cannot access App Store API atm
+# mas "Slack", id: 803453959
+# mas "Color Picker", id: 641027709
+# mas "Grammarly", id: 1462114288
+# mas "Live Wallpaper", id: 1456235760
+# mas "Flip Clock", id: 1181028777
