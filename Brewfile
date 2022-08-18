@@ -1,20 +1,31 @@
 # 'brew tap'
 tap "homebrew/cask"
+tap "homebrew/cask-fonts"
+tap "homebrew/bundle"
 tap "iina/homebrew-mpv-iina"
 
 # 'brew install'
 brew "gh"
+brew "fd"
 brew "ghq"
+brew "hub"
 brew "mas"
 brew "exa"
+brew "bat"
 brew "tree"
 brew "tmux"
 brew "stow"
+brew "pastel"
+brew "direnv"
 brew "wget"
 brew "neovim"
 brew "pipx"
 brew "lazydocker"
 brew "ansible"
+
+# fonts
+brew "font-delugia-complete"
+brew "font-jetbrains-mono"
 
 # set arguments for all 'brew install --cask' commands
 cask_args appdir: "/Applications", require_sha: true, greedy: true
@@ -45,3 +56,6 @@ cask "hyperswitch"
 # 'mas install'
 mas "Slack", id: 803453959
 mas "Color Picker", id: 641027709
+mas "Grammarly", id: 1462114288
+mas "Live Wallpaper", id: 1456235760
+mas "Flip Clock", id: 1181028777

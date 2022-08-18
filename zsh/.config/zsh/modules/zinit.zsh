@@ -35,38 +35,15 @@ zinit light tj/git-extras
 # At least this way I won't forget to install the completion
 # files, have to go back to the repo and manually add to FPATH
 # on a new PC.
-zinit from'gh-r' lucid for \
-  sbin'bin/hub' \
-  atclone'mv hub*/* .;
-    rm -rf *~*backup(/^F) (#i)install;
-    mv etc/hub.zsh* etc/_hub;
-    cp share/man/*/*.1 $ZPFX/share/man/man1' \
-  atpull'%atclone' @github/hub
-
-zinit from'gh-r' lucid for \
-  bpick'*amd64.tar.gz' sbin'**/gh' \
-  atclone'cp -vf **/*.1 $ZPFX/share/man/man1' atpull'%atclone' @cli/cli
-
 zinit as'null' wait lucid light-mode for \
   sbin'bin/git-dsf;bin/diff-so-fancy' zdharma-continuum/zsh-diff-so-fancy \
   sbin'emojify;fuzzy-emoji' src'fuzzy-emoji-zle.zsh' wfxr/emoji-cli
 
 zinit as'null' from'gh-r' lucid for \
-  mv'exa* -> exa' sbin'**/exa' ogham/exa \
-  mv'docker* -> docker-compose' sbin'docker-compose' docker/compose \
   mv'jq* -> jq' sbin stedolan/jq \
   mv'shfmt* -> shfmt' sbin @mvdan/sh \
   mv'countdown* -> countdown' sbin antonmedv/countdown \
-  mv"direnv* -> direnv" atload'eval "$(direnv hook zsh)"' sbin direnv/direnv \
   sbin junegunn/fzf-bin
-
-zinit from'gh-r' lucid for \
-  mv'ghq* -> ghq' sbin'ghq/ghq' x-motemen/ghq \
-  mv'pastel* -> pastel' sbin'pastel/pastel' @sharkdp/pastel \
-  mv'fd* -> fd' sbin'fd/fd' \
-    atclone'cp **/*.1 $ZPFX/share/man/man1' atpull'%atclone' @sharkdp/fd \
-  mv'bat* -> bat' sbin'bat/bat' \
-    atclone'cp **/*.1 $ZPFX/share/man/man1' atpull'%atclone' @sharkdp/bat
 
 zinit wait lucid for \
   wfxr/forgit \
@@ -81,10 +58,6 @@ zinit as'null' wait lucid light-mode for \
   atinit"export SDKMAN_DIR=$HOME/.local/sdkman;
     source $HOME/.local/sdkman/bin/sdkman-init.sh" \
   zdharma-continuum/null
-
-# zinit wait lucid sbin'bin/anyenv' \
-#   atload'export ANYENV_ROOT=$HOME/.anyenv; eval "$(anyenv init -)"'
-# zinit light anyenv/anyenv
 
 # Plugins
 zinit light MichaelAquilina/zsh-you-should-use
