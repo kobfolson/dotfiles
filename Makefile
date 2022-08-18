@@ -2,7 +2,7 @@ export DIRS := alacritty bat git mpv tmux zsh
 export PKGS := black mypy flake8 isort
 
 install_brew:
-	/bin/bash -e curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh
+	/bin/bash -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 
 run_brewfile:
