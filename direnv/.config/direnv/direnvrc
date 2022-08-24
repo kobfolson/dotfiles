@@ -1,0 +1,11 @@
+use_pyenv4poetry() {
+  local filename=$(find_up .python-version)
+
+  if [[ ! -f "$filename" ]]; then
+    log_error 'No local pyenv version set. Use `pyenv local <env name>` to set one.'
+    return 1
+  fi
+
+  local version=$(<$filename)
+  export VIRUTAL_ENV=$(pyenv prefix $version)
+}
