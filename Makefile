@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-export DIRS := alacritty bat git mpv tmux zsh
+export DIRS := alacritty bat git mpv tmux zsh direnv
 export PKGS = black mypy flake8 isort poetry
 
 .ONESHELL:
