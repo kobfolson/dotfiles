@@ -39,11 +39,26 @@ zinit as'null' wait lucid light-mode for \
   sbin'bin/git-dsf;bin/diff-so-fancy' zdharma-continuum/zsh-diff-so-fancy \
   sbin'emojify;fuzzy-emoji' src'fuzzy-emoji-zle.zsh' wfxr/emoji-cli
 
+# Install binaries from GitHub releases
 zinit as'null' from'gh-r' lucid for \
   mv'jq* -> jq' sbin stedolan/jq \
   mv'shfmt* -> shfmt' sbin @mvdan/sh \
-  mv'countdown* -> countdown' sbin antonmedv/countdown \
-  sbin junegunn/fzf-bin
+  sbin junegunn/fzf-bin \
+  mv'eza* -> eza' sbin eza-community/eza \
+  mv'gh_*/bin/gh -> gh' sbin'gh' cli/cli \
+  mv'glab_*/bin/glab -> glab' sbin'glab' gitlab-org/cli
+
+# Python tools
+zinit as'null' from'gh-r' lucid for \
+  mv'ruff* -> ruff' sbin astral-sh/ruff \
+  bpick'*linux*' mv'uv* -> uv' sbin astral-sh/uv
+
+# DevOps & Cloud tools
+zinit as'null' from'gh-r' lucid for \
+  bpick'*linux_amd64.zip' mv'terraform -> terraform' sbin hashicorp/terraform \
+  bpick'*Linux_x86_64.tar.gz' mv'helm -> helm' sbin helm/helm \
+  bpick'*linux/amd64*' mv'kubectl -> kubectl' sbin kubernetes/kubectl \
+  bpick'*linux-x86_64.zip' mv'aws/dist/aws -> aws' sbin'aws;aws/dist/aws_completer' aws/aws-cli
 
 zinit wait lucid for \
   wfxr/forgit \
@@ -92,10 +107,23 @@ zinit snippet 'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh'
 # Completion
 zinit ice wait'1' lucid as'completion' \
   id-as'docker-compose-completion' mv'docker-compose-completion -> _docker-compose'
-zinit snippet 'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose'
+zinit snippet 'https://github.com/docker/compose/blob/v1/contrib/completion/zsh/_docker-compose'
 
 zinit wait'1' as'completion' id-as'gh-completion' lucid for \
   atclone'gh completion -s zsh > _gh' atpull'%atclone' zdharma-continuum/null
+
+zinit wait'1' as'completion' id-as'glab-completion' lucid for \
+  atclone'glab completion -s zsh > _glab' atpull'%atclone' zdharma-continuum/null
+
+# DevOps tool completions
+zinit wait'1' as'completion' lucid for \
+  id-as'kubectl-completion' atclone'kubectl completion zsh > _kubectl' atpull'%atclone' zdharma-continuum/null \
+  id-as'helm-completion' atclone'helm completion zsh > _helm' atpull'%atclone' zdharma-continuum/null \
+  id-as'terraform-completion' atclone'terraform -install-autocomplete 2>/dev/null || true' zdharma-continuum/null
+
+# AWS CLI completion (sourced directly)
+zinit ice wait'1' lucid
+zinit snippet 'https://raw.githubusercontent.com/aws/aws-cli/v2/bin/aws_zsh_completer.sh'
 
 # Theme
 if [[ "$ZSH_THEME" == "p10k" ]]; then

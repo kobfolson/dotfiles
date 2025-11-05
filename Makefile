@@ -1,25 +1,35 @@
 SHELL=/bin/bash
 
-export DIRS := alacritty bat git mpv tmux zsh direnv
-export PKGS = black mypy flake8 isort poetry
+export DIRS := alacritty bat git mpv tmux zsh direnv npm wget
+export UV_TOOLS = mypy poetry
 
 .ONESHELL:
-.PHONY: install_brew
-install_brew:
-	sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash \
-		&& eval "$$(/opt/homebrew/bin/brew shellenv)" | bash
+.PHONY: update_system
+update_system:
+	sudo apt update && sudo apt upgrade -y
 
-.PHONY: run_brewfile
-run_brewfile:
-	brew bundle
+.PHONY: install_packages
+install_packages:
+	sudo apt update
+	sudo apt install -y $$(grep -v '^#' packages.txt | grep -v '^$$' | tr '\n' ' ')
 
 .PHONY: stow_dirs
 stow_dirs:
 	$(foreach dir,$(DIRS),$(shell stow -Rv --no-folding $(dir)))
 
+.PHONY: py_tools
+py_tools:
+	@echo "Installing Python tools via uv..."
+	@echo "Note: uv and ruff are installed via zinit (start zsh first)"
+	@if command -v uv >/dev/null 2>&1; then \
+		$(foreach tool,$(UV_TOOLS),uv tool install $(tool);) \
+	else \
+		echo "uv not found. Please start zsh to install zinit plugins, then run 'make py_tools'"; \
+	fi
+
+# Legacy alias
 .PHONY: py_linters
-py_linters:
-	$(foreach pkg,$(PKGS),$(shell pipx install $(pkg)))
+py_linters: py_tools
 
 .PHONY: setup_anyenv
 setup_anyenv:
@@ -27,18 +37,25 @@ setup_anyenv:
 
 .PHONY: system
 system:
-	# Dark interface is best interface
-	defaults write NSGlobalDomain AppleInterfaceStyle -string Dark
-
-	# Autohide the dock
-	defaults write com.apple.dock autohide -int 1
-
-	# Enable key repeat
-	defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-
-	# Change location of screenshots
+	# Create standard directories
 	mkdir -p $$HOME/Pictures/Screenshots
-	defaults write com.apple.screencapture location $$HOME/Pictures/Screenshots
+	mkdir -p $$HOME/.local/bin
+	mkdir -p $$HOME/.config
+	mkdir -p $$HOME/.cache
+	mkdir -p $$HOME/.local/share
+	mkdir -p $$HOME/.local/state
+
+	# Set zsh as default shell (if not already)
+	if [ "$$SHELL" != "$$(which zsh)" ]; then \
+		chsh -s $$(which zsh); \
+	fi
 
 .PHONY: all
-all: install_brew run_brewfile stow_dirs py_linters setup_anyenv system
+all: update_system install_packages stow_dirs setup_anyenv system
+	@echo ""
+	@echo "=== Setup Complete ==="
+	@echo "Next steps:"
+	@echo "1. Log out and back in (for shell change)"
+	@echo "2. Start zsh (zinit will auto-install tools: uv, ruff, gh, eza, etc.)"
+	@echo "3. Run 'make py_tools' to install Python dev tools via uv"
+	@echo ""

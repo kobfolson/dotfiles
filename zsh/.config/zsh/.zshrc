@@ -1,5 +1,3 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 #
 # zshrc
 #
@@ -24,5 +22,13 @@ foreach module (
 # Local plugins, completions, functions, etc.
 [[ -e $LOCALRC ]] && . $LOCALRC
 
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
+# Created by `pipx` on 2024-02-16 15:08:41
+export PATH="$PATH:/Users/kobby/.local/bin"
+
+export PATH="/opt/homebrew/bin:$PATH"
+
+# pyenv settings
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init --path)"
+  eval "$(pyenv init -)"
+fi

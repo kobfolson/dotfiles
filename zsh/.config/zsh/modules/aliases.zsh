@@ -20,8 +20,8 @@ alias d='dirs -v | head -10'
 alias '?'='pwd'
 
 # List directory contents.
-if (( $+commands[exa] )); then
-  alias ls='exa --group-directories-first --git'
+if (( $+commands[eza] )); then
+  alias ls='eza --group-directories-first --git'
   alias l='ls -l'
   alias ll='ls -lah'
   alias la='ls -lah'
@@ -59,3 +59,8 @@ fi
 
 # Convenience when pasting shell snippets.
 alias '$='
+
+# Terraform AWS SSO Wrapper
+# Global terraform wrapper that handles AWS SSO authentication automatically
+# Usage: tf <terraform-command> [args...]
+(( $+commands[tfw] )) && alias tf='tfw'

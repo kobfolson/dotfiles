@@ -5,13 +5,8 @@
 # Skip the not really helping Ubuntu global compinit
 skip_global_compinit=1
 
-# Homebrew 
-export HOMEBREW_PREFIX="/opt/homebrew";
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-export HOMEBREW_REPOSITORY="/opt/homebrew";
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
-export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+# Standard Linux paths
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin${PATH+:$PATH}"
 
 # XDG Base Directories
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-$HOME/.cache}
@@ -24,4 +19,3 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Local configuration file.
 export LOCALRC="$ZDOTDIR/.local"
-. "$HOME/.cargo/env"

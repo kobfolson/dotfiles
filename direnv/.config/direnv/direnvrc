@@ -7,5 +7,5 @@ use_pyenv4poetry() {
   fi
 
   local version=$(<$filename)
-  export VIRUTAL_ENV=$(pyenv prefix $version)
+  export VIRTUAL_ENV=$(pyenv prefix $version)
 }

@@ -1,0 +1,66 @@
+# Note: Some tools are installed via zinit (see zsh/.config/zsh/modules/zinit.zsh)
+# Modern CLI Tools:
+#   - gh (GitHub CLI)
+#   - glab (GitLab CLI)
+#   - eza (modern ls)
+#   - jq (JSON processor)
+#   - shfmt (shell formatter)
+#   - fzf (fuzzy finder)
+# Python Tools:
+#   - uv (fast Python package installer)
+#   - ruff (fast Python linter & formatter - replaces black, flake8, isort)
+#   Additional Python tools installed via 'uv tool install': mypy, poetry
+# DevOps & Cloud Tools:
+#   - terraform (Infrastructure as Code)
+#   - kubectl (Kubernetes CLI)
+#   - helm (Kubernetes package manager)
+#   - aws (AWS CLI v2)
+
+# Core Development Tools
+git
+curl
+wget
+stow
+zsh
+tmux
+neovim
+build-essential
+software-properties-common
+
+# Modern CLI Tools
+bat
+fd-find
+ripgrep
+tree
+htop
+
+# Shell & Terminal
+alacritty
+
+# Version Control & Dev Tools
+shellcheck
+
+# Container & Cloud
+docker.io
+docker-compose
+ansible
+
+# Python Development
+python3
+python3-pip
+pipx
+python3-venv
+
+# Network Tools
+net-tools
+dnsutils
+
+# Additional Tools
+direnv
+ncdu
+jq
+unzip
+
+# Fonts
+fonts-firacode
+fonts-powerline

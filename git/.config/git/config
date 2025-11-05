@@ -15,6 +15,7 @@
     prompt = false
 [commit]
     template = ~/.config/git/template
+	gpgsign = true
 [color]
     ui = true
 [color "diff-highlight"]
@@ -42,3 +43,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[user]
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII6I2AeDnWDl1je6KyxwCFdz+76BZu1dfu9V5gp0h7zg

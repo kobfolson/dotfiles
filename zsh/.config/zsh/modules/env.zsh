@@ -30,8 +30,8 @@ fi
 # Go
 export GOENV_GOPATH_PREFIX="$HOME/.local/go"
 
-# Rust
-export -U PATH="$HOME/.cargo/bin${PATH:+:$PATH}"
+# Rust (will be set via CARGO_HOME in XDG section below)
+# Path will be added after cargo is moved to XDG location
 
 # FZF
 typeset -AU __FZF
@@ -88,3 +88,27 @@ export LSCOLORS='Gxfxcxdxbxegedabagacad'
 if [[ -z "$LS_COLORS" ]]; then
   (( $+commands[dircolors] )) && eval "$(dircolors -b)"
 fi
+
+# XDG Compliance - Additional applications
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
+export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
+export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
+export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
+export GRADLE_USER_HOME="$XDG_DATA_HOME/gradle"
+export JUPYTER_CONFIG_DIR="$XDG_CONFIG_HOME/jupyter"
+export IPYTHONDIR="$XDG_CONFIG_HOME/ipython"
+export PYTHON_HISTORY="$XDG_STATE_HOME/python/history"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+export LESSHISTFILE="$XDG_STATE_HOME/less/history"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export GEM_HOME="$XDG_DATA_HOME/gem"
+export GEM_SPEC_CACHE="$XDG_CACHE_HOME/gem"
+
+# Add XDG-compliant bin directories to PATH
+export -U PATH="$CARGO_HOME/bin${PATH:+:$PATH}"
+export -U PATH="$NPM_CONFIG_PREFIX/bin${PATH:+:$PATH}"
+export -U PATH="$GEM_HOME/bin${PATH:+:$PATH}"
