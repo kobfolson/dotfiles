@@ -75,7 +75,8 @@ source ~/.bashrc
 ### Package Manager - Scoop
 Installs essential development tools and utilities:
 - **CLI Tools**: git, gh, fd, bat, ripgrep, fzf, neovim, stow
-- **Development**: Python, Node.js, ansible, shellcheck, lazydocker
+- **Development**: Python, uv (modern Python package manager), Node.js, ansible, shellcheck, lazydocker
+- **Python Tools**: ruff (linter/formatter), mypy (type checker) - installed via uv
 - **Productivity**: PowerToys, Everything (search tool)
 - **Applications**: VSCode, Docker, Postman, Spotify, browsers
 - **Fonts**: JetBrainsMono Nerd Font, CascadiaCode Nerd Font

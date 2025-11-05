@@ -101,23 +101,23 @@ stow_configs() {
     done
 }
 
-# Function to install Python linters via pipx
-install_python_linters() {
-    if ! command_exists pipx; then
-        print_msg "Installing pipx..."
-        scoop install pipx
-        pipx ensurepath
+# Function to install Python tools via uv
+install_python_tools() {
+    if ! command_exists uv; then
+        print_msg "Installing uv (modern Python package manager)..."
+        scoop install uv
     fi
 
-    print_msg "Installing Python linters..."
-    local packages=(black mypy flake8 isort poetry)
+    print_msg "Installing Python development tools..."
+    local tools=(ruff mypy)
 
-    for pkg in "${packages[@]}"; do
-        print_msg "  Installing $pkg..."
-        pipx install "$pkg" || print_warning "  Failed to install $pkg"
+    for tool in "${tools[@]}"; do
+        print_msg "  Installing $tool..."
+        uv tool install "$tool" || print_warning "  Failed to install $tool"
     done
 
-    print_success "Python linters installed"
+    print_success "Python development tools installed (ruff, mypy)"
+    print_msg "Note: Use 'uv' for Python package and project management"
 }
 
 # Main setup function
@@ -143,11 +143,11 @@ main() {
     stow_configs
     echo ""
 
-    # Ask about Python linters
-    read -p "Install Python linters (black, mypy, flake8, isort, poetry)? [y/N] " -n 1 -r
+    # Ask about Python tools
+    read -p "Install Python development tools (ruff, mypy via uv)? [y/N] " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        install_python_linters
+        install_python_tools
         echo ""
     fi
 
