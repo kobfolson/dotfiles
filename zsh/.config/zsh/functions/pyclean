@@ -1,3 +1,0 @@
-# Remove py[cod] files and __pychache__ directory.
-
-find . | grep -E "(__pycache__|\.py[cod]$)" | xargs rm -rf
