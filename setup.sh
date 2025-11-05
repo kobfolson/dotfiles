@@ -58,7 +58,7 @@ install_scoop() {
     fi
 }
 
-# Function to install packages from Scoopfile
+# Function to install Scoop packages
 install_scoop_packages() {
     if ! command_exists scoop; then
         print_error "Scoop not found. Please install Scoop first."
@@ -66,16 +66,31 @@ install_scoop_packages() {
     fi
 
     print_msg "Adding Scoop buckets..."
-    scoop bucket add extras
-    scoop bucket add nerd-fonts
+    scoop bucket add extras 2>/dev/null || true
+    scoop bucket add nerd-fonts 2>/dev/null || true
 
-    if [ -f "Scoopfile.json" ]; then
-        print_msg "Installing packages from Scoopfile.json..."
-        scoop import Scoopfile.json
-        print_success "Scoop packages installed"
-    else
-        print_warning "Scoopfile.json not found, skipping package installation"
-    fi
+    print_msg "Installing CLI tools..."
+    local cli_tools=(git gh fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck)
+    for tool in "${cli_tools[@]}"; do
+        scoop install "$tool" 2>/dev/null || print_warning "  $tool already installed or not found"
+    done
+
+    print_msg "Installing development tools..."
+    local dev_tools=(python nodejs ansible lazydocker direnv)
+    for tool in "${dev_tools[@]}"; do
+        scoop install "$tool" 2>/dev/null || print_warning "  $tool already installed or not found"
+    done
+
+    print_msg "Installing applications..."
+    local apps=(vscode google-chrome firefox docker postman spotify dbeaver sublimetext4 jetbrains-toolbox powertoys everything)
+    for app in "${apps[@]}"; do
+        scoop install "$app" 2>/dev/null || print_warning "  $app already installed or not found"
+    done
+
+    print_msg "Installing fonts..."
+    scoop install JetBrainsMono-NF CascadiaCode-NF 2>/dev/null || print_warning "  Fonts already installed or not found"
+
+    print_success "Scoop packages installation complete"
 }
 
 # Function to stow configuration directories

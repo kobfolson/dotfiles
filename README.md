@@ -38,12 +38,17 @@ powershell -Command "Set-ExecutionPolicy RemoteSigned -Scope CurrentUser; irm ge
 ## Manual Setup
 
 ### 1. Install Scoop Packages
+The `setup.sh` script will automatically add buckets and install packages.
+If you want to install manually:
 ```bash
 # In Git Bash
-scoop install git
 scoop bucket add extras
 scoop bucket add nerd-fonts
-scoop import Scoopfile.json
+
+# Install tools
+scoop install git gh fd bat ripgrep fzf stow wget neovim uv
+scoop install python nodejs ansible lazydocker direnv
+scoop install vscode docker postman
 ```
 
 ### 2. Install GNU Stow (for symlinking)
@@ -107,8 +112,7 @@ dotfiles/
 ├── bat/                # bat (cat alternative) config
 ├── direnv/             # direnv configuration
 ├── git/                # Git configuration
-├── Scoopfile.json      # Scoop package definitions
-├── setup.sh            # Automated setup script
+├── setup.sh            # Automated setup script (includes package list)
 └── README.md           # This file
 ```
 
