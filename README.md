@@ -46,9 +46,9 @@ scoop bucket add extras
 scoop bucket add nerd-fonts
 
 # Install tools
-scoop install git gh fd bat ripgrep fzf stow wget neovim uv
+scoop install git gh fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck
 scoop install python nodejs ansible lazydocker direnv
-scoop install vscode docker postman
+scoop install docker sublimetext4 jetbrains-toolbox
 ```
 
 ### 2. Install GNU Stow (for symlinking)
@@ -79,11 +79,10 @@ source ~/.bashrc
 
 ### Package Manager - Scoop
 Installs essential development tools and utilities:
-- **CLI Tools**: git, gh, fd, bat, ripgrep, fzf, neovim, stow
-- **Development**: Python, uv (modern Python package manager), Node.js, ansible, shellcheck, lazydocker
+- **CLI Tools**: git, gh, fd, bat, ripgrep, fzf, neovim, stow, wget, delta, starship
+- **Development**: Python, uv (modern Python package manager), Node.js, ansible, shellcheck, lazydocker, direnv
 - **Python Tools**: ruff (linter/formatter), mypy (type checker) - installed via uv
-- **Productivity**: PowerToys, Everything (search tool)
-- **Applications**: VSCode, Docker, Postman, Spotify, browsers
+- **Applications**: Docker, Sublime Text 4, JetBrains Toolbox
 - **Fonts**: JetBrainsMono Nerd Font, CascadiaCode Nerd Font
 
 ### Shell Configuration - Bash
@@ -161,6 +160,25 @@ scoop update *
 - Scoop keeps packages isolated and easy to uninstall
 
 ## Troubleshooting
+
+### Proxy Authentication Required (407)
+If you're behind a corporate proxy:
+```bash
+# Set proxy for Scoop
+scoop config proxy http://username:password@proxy:port
+
+# Or if using NTLM auth
+scoop config proxy http://proxy:port
+```
+
+### Package Not Found or Invalid
+Some package names may differ. Search for the correct name:
+```bash
+scoop search <package-name>
+
+# Example: if 'google-chrome' fails, try:
+scoop search chrome
+```
 
 ### Stow Conflicts
 Remove existing config files before stowing:

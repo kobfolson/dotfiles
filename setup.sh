@@ -82,7 +82,7 @@ install_scoop_packages() {
     done
 
     print_msg "Installing applications..."
-    local apps=(vscode google-chrome firefox docker postman spotify dbeaver sublimetext4 jetbrains-toolbox powertoys everything)
+    local apps=(docker sublimetext4 jetbrains-toolbox)
     for app in "${apps[@]}"; do
         scoop install "$app" 2>/dev/null || print_warning "  $app already installed or not found"
     done
