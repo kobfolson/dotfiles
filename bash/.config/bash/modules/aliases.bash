@@ -91,6 +91,3 @@ alias di='docker images'
 # Windows-specific
 alias open='explorer'
 alias clip='clip.exe'
-
-# Convenience when pasting shell snippets
-alias '$'=''

@@ -70,7 +70,7 @@ install_scoop_packages() {
     scoop bucket add nerd-fonts 2>/dev/null || true
 
     print_msg "Installing CLI tools..."
-    local cli_tools=(gh ghq fd bat ripgrep fzf wget neovim delta starship shellcheck eza btop tree)
+    local cli_tools=(gh ghq fd bat ripgrep fzf wget neovim delta starship shellcheck eza btop)
     for tool in "${cli_tools[@]}"; do
         scoop install "$tool" 2>/dev/null || print_warning "  $tool already installed or not found"
     done
