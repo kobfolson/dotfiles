@@ -16,17 +16,6 @@ add_to_path "$HOME/bin"
 add_to_path "$HOME/scoop/shims"
 add_to_path "/c/Program Files/Git/cmd"
 
-# Python user site packages (pipx, etc.)
-if command -v python &> /dev/null; then
-    PYTHON_USER_BASE=$(python -m site --user-base 2>/dev/null)
-    add_to_path "$PYTHON_USER_BASE/Scripts"
-fi
-
-# Node.js global packages
-if [ -d "$APPDATA/npm" ]; then
-    add_to_path "$APPDATA/npm"
-fi
-
 # Go binaries
 if [ -d "$HOME/go/bin" ]; then
     export GOPATH="$HOME/go"

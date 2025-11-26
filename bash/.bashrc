@@ -18,6 +18,11 @@ if [ -d "$HOME/.config/bash/functions" ]; then
     done
 fi
 
+# XDG Base Directory
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-/c/dev/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-/c/dev/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-/c/dev/.cache}"
+
 # Environment variables
 export EDITOR="nvim"
 export VISUAL="nvim"

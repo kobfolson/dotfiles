@@ -46,9 +46,8 @@ scoop bucket add extras
 scoop bucket add nerd-fonts
 
 # Install tools
-scoop install git gh fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck
-scoop install python nodejs ansible lazydocker direnv
-scoop install docker sublimetext4 jetbrains-toolbox
+scoop install gh fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck eza btop tree
+scoop install python lazydocker direnv
 ```
 
 ### 2. Install GNU Stow (for symlinking)
@@ -79,17 +78,18 @@ source ~/.bashrc
 
 ### Package Manager - Scoop
 Installs essential development tools and utilities:
-- **CLI Tools**: git, gh, fd, bat, ripgrep, fzf, neovim, stow, wget, delta, starship
-- **Development**: Python, uv (modern Python package manager), Node.js, ansible, shellcheck, lazydocker, direnv
+- **CLI Tools**: gh, fd, bat, ripgrep, fzf, neovim, stow, wget, delta, starship, shellcheck, eza, btop, tree
+- **Development**: Python, uv (modern Python package manager), lazydocker, direnv
 - **Python Tools**: ruff (linter/formatter), mypy (type checker) - installed via uv
-- **Applications**: Docker, Sublime Text 4, JetBrains Toolbox
 - **Fonts**: JetBrainsMono Nerd Font, CascadiaCode Nerd Font
+- **Note**: Git for Windows (prerequisite) is used instead of Scoop's git package
 
 ### Shell Configuration - Bash
 - Custom `.bashrc` with Git Bash optimizations
+- **XDG Base Directory**: Configured to use `/c/dev/.config` by default
 - Modular configuration (aliases, functions, paths)
-- Modern tool aliases (exa/eza for ls, bat for cat, nvim for vim)
-- Git shortcuts and Docker aliases
+- Modern tool aliases (eza for ls, bat for cat, nvim for vim, btop for top)
+- Git shortcuts and Docker aliases (using `docker compose` not legacy `docker-compose`)
 - direnv integration (if installed)
 - Starship prompt support (if installed)
 

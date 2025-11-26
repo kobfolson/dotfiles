@@ -70,21 +70,15 @@ install_scoop_packages() {
     scoop bucket add nerd-fonts 2>/dev/null || true
 
     print_msg "Installing CLI tools..."
-    local cli_tools=(git gh fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck)
+    local cli_tools=(gh fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck eza btop tree)
     for tool in "${cli_tools[@]}"; do
         scoop install "$tool" 2>/dev/null || print_warning "  $tool already installed or not found"
     done
 
     print_msg "Installing development tools..."
-    local dev_tools=(python nodejs ansible lazydocker direnv)
+    local dev_tools=(python lazydocker direnv)
     for tool in "${dev_tools[@]}"; do
         scoop install "$tool" 2>/dev/null || print_warning "  $tool already installed or not found"
-    done
-
-    print_msg "Installing applications..."
-    local apps=(docker sublimetext4 jetbrains-toolbox)
-    for app in "${apps[@]}"; do
-        scoop install "$app" 2>/dev/null || print_warning "  $app already installed or not found"
     done
 
     print_msg "Installing fonts..."
