@@ -46,7 +46,7 @@ scoop bucket add extras
 scoop bucket add nerd-fonts
 
 # Install tools
-scoop install gh fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck eza btop tree
+scoop install gh ghq fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck eza btop tree
 scoop install python lazydocker direnv
 ```
 
@@ -78,7 +78,7 @@ source ~/.bashrc
 
 ### Package Manager - Scoop
 Installs essential development tools and utilities:
-- **CLI Tools**: gh, fd, bat, ripgrep, fzf, neovim, stow, wget, delta, starship, shellcheck, eza, btop, tree
+- **CLI Tools**: gh, ghq, fd, bat, ripgrep, fzf, neovim, stow, wget, delta, starship, shellcheck, eza, btop, tree
 - **Development**: Python, uv (modern Python package manager), lazydocker, direnv
 - **Python Tools**: ruff (linter/formatter), mypy (type checker) - installed via uv
 - **Fonts**: JetBrainsMono Nerd Font, CascadiaCode Nerd Font

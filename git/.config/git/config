@@ -34,7 +34,7 @@
 [init]
     defaultBranch = main
 [ghq]
-    root = ~/Code
+    root = /c/dev/code
 [include]
     path = ~/.config/git/local
 [filter "lfs"]
