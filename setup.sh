@@ -70,7 +70,7 @@ install_scoop_packages() {
     scoop bucket add nerd-fonts 2>/dev/null || true
 
     print_msg "Installing CLI tools..."
-    local cli_tools=(gh ghq fd bat ripgrep fzf wget neovim uv delta starship shellcheck eza btop tree)
+    local cli_tools=(gh ghq fd bat ripgrep fzf wget neovim delta starship shellcheck eza btop tree)
     for tool in "${cli_tools[@]}"; do
         scoop install "$tool" 2>/dev/null || print_warning "  $tool already installed or not found"
     done
@@ -139,11 +139,11 @@ symlink_configs() {
 # Function to install Python tools via uv
 install_python_tools() {
     if ! command_exists uv; then
-        print_msg "Installing uv (modern Python package manager)..."
-        scoop install uv
+        print_error "uv not found. Please install uv first: https://docs.astral.sh/uv/getting-started/installation/"
+        return 1
     fi
 
-    print_msg "Installing Python development tools..."
+    print_msg "Installing Python development tools via uv..."
     local tools=(ruff mypy)
 
     for tool in "${tools[@]}"; do

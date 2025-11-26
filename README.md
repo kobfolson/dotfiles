@@ -46,8 +46,12 @@ scoop bucket add extras
 scoop bucket add nerd-fonts
 
 # Install tools
-scoop install gh ghq fd bat ripgrep fzf wget neovim uv delta starship shellcheck eza btop tree
+scoop install gh ghq fd bat ripgrep fzf wget neovim delta starship shellcheck eza btop tree
 scoop install python lazydocker direnv
+
+# Note: Python tools (ruff, mypy) require uv to be installed separately
+# Install uv: https://docs.astral.sh/uv/getting-started/installation/
+# The setup script will prompt to install Python tools via uv
 ```
 
 ### 2. Reload Git Bash Profile
@@ -62,8 +66,8 @@ source ~/.bashrc
 ### Package Manager - Scoop
 Installs essential development tools and utilities:
 - **CLI Tools**: gh, ghq, fd, bat, ripgrep, fzf, neovim, wget, delta, starship, shellcheck, eza, btop, tree
-- **Development**: Python, uv (modern Python package manager), lazydocker, direnv
-- **Python Tools**: ruff (linter/formatter), mypy (type checker) - installed via uv
+- **Development**: Python, lazydocker, direnv
+- **Python Tools (Optional)**: ruff (linter/formatter), mypy (type checker) - installed via uv (requires uv installed separately)
 - **Fonts**: JetBrainsMono Nerd Font, CascadiaCode Nerd Font
 - **Note**: Git for Windows (prerequisite) is used instead of Scoop's git package
 - **Note**: Configuration files are symlinked using native Git Bash symlinks (no GNU Stow needed)
