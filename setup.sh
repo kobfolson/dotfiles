@@ -13,8 +13,8 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# Directories to stow
-STOW_DIRS=(bash git bat direnv)
+# Configuration directories to symlink
+CONFIG_DIRS=(bash git bat direnv)
 
 # Function to print colored messages
 print_msg() {
@@ -70,7 +70,7 @@ install_scoop_packages() {
     scoop bucket add nerd-fonts 2>/dev/null || true
 
     print_msg "Installing CLI tools..."
-    local cli_tools=(gh ghq fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck eza btop tree)
+    local cli_tools=(gh ghq fd bat ripgrep fzf wget neovim uv delta starship shellcheck eza btop tree)
     for tool in "${cli_tools[@]}"; do
         scoop install "$tool" 2>/dev/null || print_warning "  $tool already installed or not found"
     done
@@ -87,27 +87,53 @@ install_scoop_packages() {
     print_success "Scoop packages installation complete"
 }
 
-# Function to stow configuration directories
-stow_configs() {
-    if ! command_exists stow; then
-        print_error "GNU Stow not found. Installing via Scoop..."
-        scoop install stow
-    fi
+# Function to create symlinks for configuration directories
+symlink_configs() {
+    print_msg "Creating symlinks for configuration directories..."
 
-    print_msg "Stowing configuration directories..."
+    local dotfiles_dir="$(pwd)"
 
-    for dir in "${STOW_DIRS[@]}"; do
-        if [ -d "$dir" ]; then
-            print_msg "  Stowing $dir..."
-            if stow -v --no-folding "$dir" 2>&1; then
-                print_success "  $dir stowed successfully"
-            else
-                print_warning "  $dir may have conflicts (this is normal if configs already exist)"
-            fi
-        else
+    for dir in "${CONFIG_DIRS[@]}"; do
+        if [ ! -d "$dir" ]; then
             print_warning "  Directory $dir not found, skipping"
+            continue
         fi
+
+        print_msg "  Symlinking $dir..."
+
+        # Find all files and directories in the config directory
+        find "$dir" -type f -o -type d | while read -r item; do
+            # Skip the base directory itself
+            [ "$item" = "$dir" ] && continue
+
+            # Get relative path from config directory
+            local rel_path="${item#$dir/}"
+            local target="$HOME/$rel_path"
+            local source="$dotfiles_dir/$item"
+
+            # Create parent directory if needed
+            local parent_dir="$(dirname "$target")"
+            if [ ! -d "$parent_dir" ]; then
+                mkdir -p "$parent_dir"
+            fi
+
+            # Skip if it's a directory (we only symlink files)
+            [ -d "$item" ] && continue
+
+            # Create symlink if target doesn't exist
+            if [ -e "$target" ] || [ -L "$target" ]; then
+                print_warning "    $rel_path already exists, skipping"
+            else
+                if ln -s "$source" "$target" 2>/dev/null; then
+                    print_success "    Linked $rel_path"
+                else
+                    print_error "    Failed to link $rel_path (try running as Administrator or enable Developer Mode)"
+                fi
+            fi
+        done
     done
+
+    print_success "Configuration symlinks created"
 }
 
 # Function to install Python tools via uv
@@ -148,8 +174,8 @@ main() {
     install_scoop_packages
     echo ""
 
-    # Stow configurations
-    stow_configs
+    # Create configuration symlinks
+    symlink_configs
     echo ""
 
     # Ask about Python tools

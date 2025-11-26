@@ -46,30 +46,13 @@ scoop bucket add extras
 scoop bucket add nerd-fonts
 
 # Install tools
-scoop install gh ghq fd bat ripgrep fzf stow wget neovim uv delta starship shellcheck eza btop tree
+scoop install gh ghq fd bat ripgrep fzf wget neovim uv delta starship shellcheck eza btop tree
 scoop install python lazydocker direnv
 ```
 
-### 2. Install GNU Stow (for symlinking)
+### 2. Reload Git Bash Profile
 ```bash
-scoop install stow
-```
-
-### 3. Stow Configuration Directories
-```bash
-# Navigate to dotfiles directory
-cd ~/dotfiles
-
-# Stow individual configs
-stow -v git
-stow -v bash
-stow -v bat
-stow -v direnv
-```
-
-### 4. Reload Git Bash Profile
-```bash
-# The .bashrc and .bash_profile will be symlinked by stow
+# The .bashrc and .bash_profile will be symlinked by the setup script
 # Reload your profile
 source ~/.bashrc
 ```
@@ -78,11 +61,12 @@ source ~/.bashrc
 
 ### Package Manager - Scoop
 Installs essential development tools and utilities:
-- **CLI Tools**: gh, ghq, fd, bat, ripgrep, fzf, neovim, stow, wget, delta, starship, shellcheck, eza, btop, tree
+- **CLI Tools**: gh, ghq, fd, bat, ripgrep, fzf, neovim, wget, delta, starship, shellcheck, eza, btop, tree
 - **Development**: Python, uv (modern Python package manager), lazydocker, direnv
 - **Python Tools**: ruff (linter/formatter), mypy (type checker) - installed via uv
 - **Fonts**: JetBrainsMono Nerd Font, CascadiaCode Nerd Font
 - **Note**: Git for Windows (prerequisite) is used instead of Scoop's git package
+- **Note**: Configuration files are symlinked using native Git Bash symlinks (no GNU Stow needed)
 
 ### Shell Configuration - Bash
 - Custom `.bashrc` with Git Bash optimizations
@@ -120,14 +104,11 @@ dotfiles/
 If you also use WSL (Windows Subsystem for Linux), you can share configurations:
 
 ```bash
-# In WSL
-ln -s /mnt/c/Users/YourName/dotfiles/git/.gitconfig ~/.gitconfig
-ln -s /mnt/c/Users/YourName/dotfiles/bat ~/.config/bat
-ln -s /mnt/c/Users/YourName/dotfiles/direnv ~/.config/direnv
-
-# Or stow directly from the Windows path
-cd /mnt/c/Users/YourName/dotfiles
-stow -v git bat direnv
+# In WSL, manually create symlinks to share configurations
+ln -s /mnt/c/Users/YourName/dotfiles/git/.config/git ~/.config/git
+ln -s /mnt/c/Users/YourName/dotfiles/bat/.config/bat ~/.config/bat
+ln -s /mnt/c/Users/YourName/dotfiles/direnv/.config/direnv ~/.config/direnv
+ln -s /mnt/c/Users/YourName/dotfiles/bash/.bashrc ~/.bashrc
 ```
 
 For zsh users in WSL, the main branch has zsh configurations.
@@ -180,11 +161,15 @@ scoop search <package-name>
 scoop search chrome
 ```
 
-### Stow Conflicts
-Remove existing config files before stowing:
+### Symlink Conflicts
+If you have existing config files, the setup script will skip them. To replace them:
 ```bash
-rm ~/.bashrc ~/.bash_profile
-stow -v bash
+# Backup existing configs
+mv ~/.bashrc ~/.bashrc.backup
+mv ~/.bash_profile ~/.bash_profile.backup
+
+# Re-run the setup script
+./setup.sh
 ```
 
 ### Scoop Not Found
@@ -198,7 +183,7 @@ Some operations require running Git Bash as Administrator, or enable Developer M
 - Settings → Update & Security → For Developers → Developer Mode
 
 ### Symlinks Not Working
-Enable Developer Mode (above) or run Git Bash as Administrator when using `stow`.
+Enable Developer Mode (above) or run Git Bash as Administrator when running the setup script to create symlinks.
 
 ### Command Not Found After Install
 Restart Git Bash to refresh the PATH, or source your profile:
