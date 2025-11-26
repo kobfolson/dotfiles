@@ -39,11 +39,13 @@ zinit as'null' wait lucid light-mode for \
   sbin'bin/git-dsf;bin/diff-so-fancy' zdharma-continuum/zsh-diff-so-fancy \
   sbin'emojify;fuzzy-emoji' src'fuzzy-emoji-zle.zsh' wfxr/emoji-cli
 
-zinit as'null' from'gh-r' lucid for \
-  mv'jq* -> jq' sbin stedolan/jq \
-  mv'shfmt* -> shfmt' sbin @mvdan/sh \
-  mv'countdown* -> countdown' sbin antonmedv/countdown \
-  sbin junegunn/fzf-bin
+# Note: jq, shfmt, countdown, and fzf are better managed via Homebrew
+# Install with: brew install jq shfmt countdown fzf
+# zinit as'null' from'gh-r' lucid for \
+#   mv'jq* -> jq' sbin stedolan/jq \
+#   mv'shfmt* -> shfmt' sbin @mvdan/sh \
+#   mv'countdown* -> countdown' sbin antonmedv/countdown \
+#   sbin junegunn/fzf-bin
 
 zinit wait lucid for \
   wfxr/forgit \

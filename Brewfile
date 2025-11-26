@@ -24,6 +24,8 @@ brew "lazydocker"
 brew "ansible"
 brew "shellcheck"
 brew "youtube-dl"
+brew "shfmt"
+brew "countdown"
 
 # fonts
 cask "font-delugia-complete"

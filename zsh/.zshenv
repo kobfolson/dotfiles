@@ -24,4 +24,6 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # Local configuration file.
 export LOCALRC="$ZDOTDIR/.local"
-. "$HOME/.cargo/env"
+
+# Cargo (Rust) environment
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

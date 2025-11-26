@@ -6,8 +6,10 @@ export PKGS = black mypy flake8 isort poetry
 .ONESHELL:
 .PHONY: install_brew
 install_brew:
-	sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash \
-		&& eval "$$(/opt/homebrew/bin/brew shellenv)" | bash
+	@echo "Installing Homebrew..."
+	@curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+	@echo "Setting up Homebrew environment..."
+	@eval "$$(/opt/homebrew/bin/brew shellenv)"
 
 .PHONY: run_brewfile
 run_brewfile:
@@ -15,11 +17,17 @@ run_brewfile:
 
 .PHONY: stow_dirs
 stow_dirs:
-	$(foreach dir,$(DIRS),$(shell stow -Rv --no-folding $(dir)))
+	@for dir in $(DIRS); do \
+		echo "Stowing $$dir..."; \
+		stow -Rv --no-folding $$dir; \
+	done
 
 .PHONY: py_linters
 py_linters:
-	$(foreach pkg,$(PKGS),$(shell pipx install $(pkg)))
+	@for pkg in $(PKGS); do \
+		echo "Installing $$pkg..."; \
+		pipx install $$pkg; \
+	done
 
 .PHONY: setup_anyenv
 setup_anyenv:
