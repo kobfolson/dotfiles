@@ -42,3 +42,8 @@ if isosx && [[ -s /etc/paths ]]; then
     fi
   done
 fi
+
+# Add WezTerm binary to PATH if installed
+if isosx && [[ -d /Applications/WezTerm.app ]]; then
+  path+=(/Applications/WezTerm.app/Contents/MacOS)
+fi

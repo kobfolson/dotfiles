@@ -20,19 +20,19 @@ alias d='dirs -v | head -10'
 alias '?'='pwd'
 
 # List directory contents.
-if (( $+commands[exa] )); then
-  alias ls='exa --group-directories-first --git'
+if (( $+commands[eza] )); then
+  alias ls='eza --group-directories-first --git'
   alias l='ls -l'
   alias ll='ls -lah'
   alias la='ls -lah'
   alias lx='ls -l --sort extension'
   alias lt='ls -T'
 else
-  alias ls='ls -F --color --group-directories-first'
+  alias ls='ls -FG'
   alias l='ls -lh'
   alias ll='ls -lAh'
   alias la='ls -lah'
-  alias lx='ls -lXB'
+  alias lx='ls -lh'
   (( $+commands[tree] )) && alias lt='tree'
 fi
 

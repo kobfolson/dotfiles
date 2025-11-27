@@ -1,7 +1,6 @@
 SHELL=/bin/bash
 
-export DIRS := alacritty bat git mpv tmux zsh direnv
-export PKGS = black mypy flake8 isort poetry
+export DIRS := alacritty bat git mpv tmux zsh direnv ruff
 
 .ONESHELL:
 .PHONY: install_brew
@@ -22,16 +21,14 @@ stow_dirs:
 		stow -Rv --no-folding $$dir; \
 	done
 
-.PHONY: py_linters
-py_linters:
-	@for pkg in $(PKGS); do \
-		echo "Installing $$pkg..."; \
-		pipx install $$pkg; \
-	done
-
 .PHONY: setup_anyenv
 setup_anyenv:
 	anyenv install --init git@github.com:idadzie/anyenv-install.git
+
+.PHONY: setup_uv_tools
+setup_uv_tools:
+	@echo "Installing ruff via uv..."
+	@uv tool install ruff
 
 .PHONY: system
 system:
@@ -49,4 +46,4 @@ system:
 	defaults write com.apple.screencapture location $$HOME/Pictures/Screenshots
 
 .PHONY: all
-all: install_brew run_brewfile stow_dirs py_linters setup_anyenv system
+all: install_brew run_brewfile stow_dirs setup_anyenv setup_uv_tools system

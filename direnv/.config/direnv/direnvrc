@@ -1,11 +1,13 @@
-use_pyenv4poetry() {
-  local filename=$(find_up .python-version)
-
-  if [[ ! -f "$filename" ]]; then
-    log_error 'No local pyenv version set. Use `pyenv local <env name>` to set one.'
-    return 1
+layout_uv() {
+  if [[ -d ".venv" ]]; then
+    VIRTUAL_ENV="$(pwd)/.venv"
   fi
 
-  local version=$(<$filename)
-  export VIRUTAL_ENV=$(pyenv prefix $version)
+  if [[ -z $VIRTUAL_ENV || ! -d $VIRTUAL_ENV ]]; then
+    log_status "No virtual environment exists. Run 'uv venv' to create one."
+    return
+  fi
+
+  export VIRTUAL_ENV
+  PATH_add "$VIRTUAL_ENV/bin"
 }

@@ -18,9 +18,11 @@ export LESSCHARSET='utf-8'
 # Local binaries
 export -U PATH="$HOME/.local/bin${PATH:+:$PATH}"
 
-# Poetry
-export POETRY_HOME="$HOME/.local/poetry"
-export -U PATH="$POETRY_HOME/bin${PATH:+:$PATH}"
+# uv
+export UV_PYTHON_PREFERENCE=only-managed
+
+# Ruff
+export RUFF_CONFIG="$XDG_CONFIG_HOME/ruff/ruff.toml"
 
 # Yarn
 if (( $+commands[yarn] )); then

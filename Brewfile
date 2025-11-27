@@ -19,9 +19,7 @@ brew "pastel"
 brew "direnv"
 brew "wget"
 brew "neovim"
-brew "pipx"
-brew "lazydocker"
-brew "ansible"
+brew "uv"
 brew "shellcheck"
 brew "youtube-dl"
 brew "shfmt"
@@ -33,32 +31,10 @@ cask "font-jetbrains-mono"
 
 # 'brew install --cask'
 cask "iina"
-cask "logseq"
 cask "google-chrome"
-cask "firefox"
 cask "jetbrains-toolbox"
-cask "dbeaver-community"
-cask "sublime-text"
 cask "stremio"
-cask "microsoft-teams"
-cask "fig"
-cask "folx"
 cask "raycast"
 cask "docker"
-cask "appcleaner"
-cask "cheatsheet"
-cask "alacritty"
-cask "caffeine"
-cask "postman"
-cask "spotify"
 cask "webpquicklook"
 cask "visual-studio-code"
-cask "hyperswitch"
-
-# 'mas install'
-# mas cannot access App Store API atm
-# mas "Slack", id: 803453959
-# mas "Color Picker", id: 641027709
-# mas "Grammarly", id: 1462114288
-# mas "Live Wallpaper", id: 1456235760
-# mas "Flip Clock", id: 1181028777

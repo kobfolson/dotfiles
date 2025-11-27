@@ -26,8 +26,8 @@ config.colors = {
 	cursor_bg = "#abb2bf",
 	cursor_fg = "#282c34",
 	cursor_border = "#abb2bf",
-	selection_bg = "#3e4451",
-	selection_fg = "#abb2bf",
+	selection_bg = "#61afef", -- Bright blue selection background
+	selection_fg = "#282c34", -- Dark foreground for contrast
 	ansi = {
 		"#282c34", -- black
 		"#e06c75", -- red
@@ -71,11 +71,25 @@ config.colors.tab_bar = {
 }
 
 -- Mouse support (matching tmux mouse mode)
+-- Auto-copy on selection and clear highlight (like tmux)
 config.mouse_bindings = {
+	-- Copy to clipboard on selection and clear highlight (mouse drag release)
 	{
 		event = { Up = { streak = 1, button = "Left" } },
 		mods = "NONE",
-		action = wezterm.action.CompleteSelection("ClipboardAndPrimarySelection"),
+		action = wezterm.action.Multiple({
+			wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection"),
+			wezterm.action.ClearSelection,
+		}),
+	},
+	-- Extend selection on shift+click
+	{
+		event = { Up = { streak = 1, button = "Left" } },
+		mods = "SHIFT",
+		action = wezterm.action.Multiple({
+			wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor("ClipboardAndPrimarySelection"),
+			wezterm.action.ClearSelection,
+		}),
 	},
 }
 
