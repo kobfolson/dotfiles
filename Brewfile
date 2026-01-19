@@ -1,7 +1,4 @@
 # 'brew tap'
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/bundle"
 tap "iina/homebrew-mpv-iina"
 
 # 'brew install'
@@ -10,7 +7,7 @@ brew "fd"
 brew "ghq"
 brew "hub"
 brew "mas"
-brew "exa"
+brew "eza"
 brew "bat"
 brew "tree"
 brew "tmux"
@@ -21,7 +18,7 @@ brew "wget"
 brew "neovim"
 brew "uv"
 brew "shellcheck"
-brew "youtube-dl"
+brew "yt-dlp"
 brew "shfmt"
 brew "countdown"
 

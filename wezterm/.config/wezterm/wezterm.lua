@@ -1,11 +1,11 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
--- Font configuration (matching alacritty)
+-- Font configuration
 config.font = wezterm.font("Delugia", { weight = "Regular" })
 config.font_size = 17.0
 
--- Window configuration (matching alacritty)
+-- Window configuration
 config.initial_cols = 121
 config.initial_rows = 35
 config.window_padding = {
@@ -14,12 +14,12 @@ config.window_padding = {
 	top = 10,
 	bottom = 10,
 }
-config.window_decorations = "RESIZE" -- no title bar like alacritty
+config.window_decorations = "RESIZE"
 
--- Scrollback (matching alacritty)
+-- Scrollback
 config.scrollback_lines = 10000
 
--- Color scheme (One Dark theme matching alacritty)
+-- Color scheme (One Dark theme)
 config.colors = {
 	foreground = "#abb2bf",
 	background = "#282c34",
@@ -97,7 +97,7 @@ config.mouse_bindings = {
 config.leader = { key = "`", mods = "", timeout_milliseconds = 1000 }
 
 config.keys = {
-	-- Alt+Left/Right for word navigation (matching alacritty)
+	-- Alt+Left/Right for word navigation
 	{ key = "LeftArrow", mods = "OPT", action = wezterm.action.SendString("\x1bb") },
 	{ key = "RightArrow", mods = "OPT", action = wezterm.action.SendString("\x1bf") },
 
