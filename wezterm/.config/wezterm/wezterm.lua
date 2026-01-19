@@ -50,7 +50,7 @@ config.colors = {
 	},
 }
 
--- Tab bar styling (similar to tmux status bar)
+-- Tab bar styling
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 config.colors.tab_bar = {
@@ -70,8 +70,8 @@ config.colors.tab_bar = {
 	},
 }
 
--- Mouse support (matching tmux mouse mode)
--- Auto-copy on selection and clear highlight (like tmux)
+-- Mouse support
+-- Auto-copy on selection and clear highlight
 config.mouse_bindings = {
 	-- Copy to clipboard on selection and clear highlight (mouse drag release)
 	{
@@ -101,20 +101,20 @@ config.keys = {
 	{ key = "LeftArrow", mods = "OPT", action = wezterm.action.SendString("\x1bb") },
 	{ key = "RightArrow", mods = "OPT", action = wezterm.action.SendString("\x1bf") },
 
-	-- Split panes (matching tmux h/v bindings)
+	-- Split panes
 	{ key = "h", mods = "LEADER", action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "v", mods = "LEADER", action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 
-	-- Pane navigation with Alt+Arrow (matching tmux)
+	-- Pane navigation with Alt+Arrow
 	{ key = "LeftArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Left") },
 	{ key = "RightArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Right") },
 	{ key = "UpArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Up") },
 	{ key = "DownArrow", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Down") },
 
-	-- Reload config (matching tmux)
+	-- Reload config
 	{ key = "r", mods = "LEADER", action = wezterm.action.ReloadConfiguration },
 
-	-- Create/navigate tabs (replacing tmux windows)
+	-- Create/navigate tabs
 	{ key = "c", mods = "LEADER", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
 	{ key = "n", mods = "LEADER", action = wezterm.action.ActivateTabRelative(1) },
 	{ key = "p", mods = "LEADER", action = wezterm.action.ActivateTabRelative(-1) },
@@ -131,14 +131,14 @@ config.keys = {
 	{ key = "8", mods = "LEADER", action = wezterm.action.ActivateTab(7) },
 	{ key = "9", mods = "LEADER", action = wezterm.action.ActivateTab(8) },
 
-	-- Copy mode (similar to tmux)
+	-- Copy mode
 	{ key = "[", mods = "LEADER", action = wezterm.action.ActivateCopyMode },
 
-	-- Zoom pane (similar to tmux zoom)
+	-- Zoom pane
 	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
 }
 
--- Tab title formatting (show index starting from 1, like tmux)
+-- Tab title formatting (show index starting from 1)
 wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
 	local title = string.format(" %d: %s ", tab.tab_index + 1, tab.active_pane.title)
 	return {
@@ -149,7 +149,7 @@ end)
 -- Shell configuration
 config.default_prog = { "/bin/zsh", "-l" }
 
--- Automatically save and restore sessions (replaces tmux-resurrect/continuum)
+-- Automatically reload config on changes
 config.automatically_reload_config = true
 
 -- Window close confirmation (prevent accidental closes)

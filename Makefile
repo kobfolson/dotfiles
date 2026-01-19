@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-export DIRS := bat git mpv tmux zsh direnv ruff
+export DIRS := bat git mpv zsh direnv ruff
 
 .ONESHELL:
 .PHONY: install_brew
