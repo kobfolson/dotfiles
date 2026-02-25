@@ -64,6 +64,14 @@ zinit as'null' wait lucid light-mode for \
 # Plugins
 zinit light MichaelAquilina/zsh-you-should-use
 
+zinit wait lucid for \
+  atinit'ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay' \
+    zdharma-continuum/fast-syntax-highlighting \
+  blockf \
+    zsh-users/zsh-completions \
+  atload'!_zsh_autosuggest_start' \
+    zsh-users/zsh-autosuggestions
+
 # local omz_plugins
 # omz_plugins=(
 #   lib/git.zsh
@@ -82,6 +90,8 @@ zinit lucid for \
   OMZP::extract \
   as'completion' OMZP::extract/_extract \
   OMZP::encode64 \
+  OMZP::terraform \
+  OMZP::kubectl \
   OMZT::fishy
 
 # Snippets
