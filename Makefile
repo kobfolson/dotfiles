@@ -1,6 +1,6 @@
 SHELL=/bin/bash
 
-export DIRS := bat git mpv zsh direnv ruff
+export DIRS := bat git mpv wezterm zsh direnv ruff
 
 .ONESHELL:
 .PHONY: install_brew
@@ -21,9 +21,13 @@ stow_dirs:
 		stow -Rv --no-folding $$dir; \
 	done
 
-.PHONY: setup_anyenv
-setup_anyenv:
-	anyenv install --init git@github.com:idadzie/anyenv-install.git
+.PHONY: setup_mise
+setup_mise:
+	@echo "Installing tools via mise..."
+	mise use --global terraform@latest
+	mise use --global kubectl@latest
+	mise use --global go@latest
+	mise use --global node@lts
 
 .PHONY: setup_uv_tools
 setup_uv_tools:
@@ -46,4 +50,4 @@ system:
 	defaults write com.apple.screencapture location $$HOME/Pictures/Screenshots
 
 .PHONY: all
-all: install_brew run_brewfile stow_dirs setup_anyenv setup_uv_tools system
+all: run_brewfile stow_dirs setup_mise setup_uv_tools system

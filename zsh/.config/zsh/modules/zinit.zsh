@@ -24,8 +24,6 @@ zinit light-mode for zdharma-continuum/zinit-annex-bin-gem-node
 zinit light-mode for zdharma-continuum/zinit-annex-readurl
 
 # Commands
-zinit light rupa/z
-
 zinit ice as'program' pick"$ZPFX/bin/git-*" \
   make"PREFIX=$ZPFX" src'etc/git-extras-completion.zsh'
 zinit light tj/git-extras
@@ -48,9 +46,7 @@ zinit as'null' wait lucid light-mode for \
 #   sbin junegunn/fzf-bin
 
 zinit wait lucid for \
-  wfxr/forgit \
-  sbin'bin/anyenv' \
-    atload'export ANYENV_ROOT=$HOME/.local/anyenv; eval "$(anyenv init -)"' anyenv/anyenv
+  wfxr/forgit
 
 zinit as'null' wait lucid light-mode for \
   id-as'sdkman' run-atpull \
@@ -108,6 +104,9 @@ zinit snippet 'https://github.com/docker/compose/blob/master/contrib/completion/
 
 zinit wait'1' as'completion' id-as'gh-completion' lucid for \
   atclone'gh completion -s zsh > _gh' atpull'%atclone' zdharma-continuum/null
+
+zinit wait'1' as'completion' id-as'glab-completion' lucid for \
+  atclone'glab completion -s zsh > _glab' atpull'%atclone' zdharma-continuum/null
 
 # Theme
 if [[ "$ZSH_THEME" == "p10k" ]]; then

@@ -1,3 +1,5 @@
+# Personal identity — used by default (GitHub and anything not GitLab).
+# Copy to ~/.config/git/local and fill in.
 [user]
     name =
     email =

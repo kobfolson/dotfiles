@@ -29,8 +29,8 @@ if (( $+commands[yarn] )); then
   export -U PATH="$HOME/.yarn/bin${PATH:+:$PATH}"
 fi
 
-# Go
-export GOENV_GOPATH_PREFIX="$HOME/.local/go"
+# mise - dev tools version manager
+(( $+commands[mise] )) && eval "$(mise activate zsh)"
 
 # AWS (XDG compliant)
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"

@@ -59,3 +59,6 @@ fi
 
 # Convenience when pasting shell snippets.
 alias '$='
+
+# zoxide - smarter cd
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh --cmd cd)"

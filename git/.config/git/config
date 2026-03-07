@@ -37,6 +37,9 @@
     root = ~/Code
 [include]
     path = ~/.config/git/local
+
+[includeIf "gitdir:~/Code/gitlab.com/"]
+    path = ~/.config/git/gitlab
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
