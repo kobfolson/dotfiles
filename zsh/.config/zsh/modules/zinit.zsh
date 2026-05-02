@@ -68,17 +68,6 @@ zinit wait lucid for \
   atload'!_zsh_autosuggest_start' \
     zsh-users/zsh-autosuggestions
 
-# local omz_plugins
-# omz_plugins=(
-#   lib/git.zsh
-#   plugins/git/git.plugin.zsh
-#   plugins/extract/extract.plugin.zsh
-#   plugins/encode64/encode64.plugin.zsh
-#   themes/fishy.zsh-theme
-# )
-# zinit ice pick'dev/null' nocompletions blockf \
-#   multisrc"${omz_plugins}"
-# zinit light robbyrussell/oh-my-zsh
 
 zinit lucid for \
   OMZL::git.zsh \
