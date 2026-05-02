@@ -51,7 +51,7 @@ zinit wait lucid for \
 zinit as'null' wait lucid light-mode for \
   id-as'sdkman' run-atpull \
   atclone"wget https://get.sdkman.io/\?rcupdate=false -O scr.sh;
-    SDKMAN_DIR=$HOME/.local/sdkman bash scr.sh" \
+    SDKMAN_DIR=$HOME/.local/sdkman ${commands[bash]} scr.sh" \
   atpull"SDKMAN_DIR=$HOME/.local/sdkman sdk selfupdate" \
   atinit"export SDKMAN_DIR=$HOME/.local/sdkman;
     source $HOME/.local/sdkman/bin/sdkman-init.sh" \
