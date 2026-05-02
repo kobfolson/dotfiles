@@ -81,7 +81,7 @@ zinit snippet 'https://github.com/junegunn/fzf/blob/master/shell/completion.zsh'
 
 # Completion
 zinit wait'1' as'completion' id-as'docker-compose-completion' lucid for \
-  atclone'docker compose completion zsh > _docker-compose' atpull'%atclone' zdharma-continuum/null
+  atclone'docker compose completion zsh > _docker-compose 2>/dev/null || true' atpull'%atclone' zdharma-continuum/null
 
 zinit wait'1' as'completion' id-as'gh-completion' lucid for \
   atclone'gh completion -s zsh > _gh' atpull'%atclone' zdharma-continuum/null
