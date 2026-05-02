@@ -1,6 +1,3 @@
-# 'brew tap'
-tap "iina/homebrew-mpv-iina"
-
 # 'brew install'
 brew "gh"
 brew "glab"
@@ -22,16 +19,15 @@ brew "zoxide"
 brew "yt-dlp"
 brew "shfmt"
 brew "countdown"
+brew "fzf"
+brew "awscli"
 
 # fonts
 cask "font-delugia-complete"
 cask "font-jetbrains-mono"
 
 # 'brew install --cask'
-cask "iina"
 cask "google-chrome"
-cask "jetbrains-toolbox"
-cask "stremio"
 cask "raycast"
 cask "webpquicklook"
 cask "visual-studio-code"

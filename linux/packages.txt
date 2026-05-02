@@ -1,0 +1,13 @@
+gh
+glab
+eza
+fd-find
+bat
+tree
+stow
+direnv
+wget
+neovim
+shellcheck
+zoxide
+tmux

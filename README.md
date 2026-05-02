@@ -56,7 +56,7 @@ This script handles everything in order:
 |---|---|
 | `brew bundle` | Installs everything in `Brewfile` |
 | `stow` | Symlinks config dirs (`bat`, `git`, `mpv`, `wezterm`, `zsh`, `direnv`, `ruff`) into `~` |
-| `mise` | Installs `terraform`, `kubectl`, `go`, and `node` at their latest/LTS versions |
+| `mise` | Installs `terraform`, `kubectl`, `helm`, `go`, and `node` at their latest/LTS versions |
 | `uv tool install ruff` | Installs ruff as a global uv tool |
 | `system` | Applies macOS preferences (dark mode, dock, screenshots location, etc.) |
 

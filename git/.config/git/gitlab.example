@@ -1,0 +1,5 @@
+# Work identity — used for all repos under ~/Code/gitlab.com/
+# Copy to ~/.config/git/gitlab and fill in your work details.
+[user]
+    name =
+    email =
