@@ -31,3 +31,6 @@ zsdoc/data
 # local environment files
 *.local
 
+# Claude Code
+.claude/
+
