@@ -32,6 +32,9 @@ fi
 # mise - dev tools version manager
 (( $+commands[mise] )) && eval "$(mise activate zsh)"
 
+# direnv
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+
 # AWS (XDG compliant)
 export AWS_CONFIG_FILE="$XDG_CONFIG_HOME/aws/config"
 export AWS_SHARED_CREDENTIALS_FILE="$XDG_CONFIG_HOME/aws/credentials"
